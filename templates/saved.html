@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Saved Headlines</title>
+        <style>
+            body {
+                background-color: #1a1a2e;
+                color: white;
+                font-family: Arial, sans-serif  ;
+                padding: 30px;
+
+            }
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #16213e;
+                padding: 15px 30px;
+                margin: -30px -30px 30px -30px;
+            }
+            .navbar h1 {
+                margin: 0;
+                color: #e94560;
+                font-size: 36px;
+            }
+            .nav-links a{
+                text-decoration: none;
+                padding: 6px 14px;
+                background-color: #158135;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+
+
+            .card{
+                background-color: #16213e;
+                padding: 15px 20px;
+                margin: 10px 0;
+                border-radius: 8px;
+                border-left: 4px solid #e94560;
+                justify-content: space-between;
+                display: flex;
+                align-items:center;
+            }
+            .delete-btn{
+                padding: 6px 14px;
+                background-color: #16213e;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <title>Saved Headlines</title>
+        <div class="navbar">
+            <h1>📰 News Tracker</h1>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/saved" class="saved-btn">📌 Saved </a>
+            
+            </div>
+        </div>
+        <h2 style="color: #e94560;"> Saved Headlines</h2>
+        {% if headlines %}
+            {% for headline in headlines %}
+                <div class="card">
+                    <span>{{ headline }}</span>
+                    <form action="/delete" method="post">
+                        <input type="hidden" name="headline" value="{{headline}}">
+                        <button class="delete-btn" type="submit">❌</button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No saved headlines yet.</p>
+        {% endif %}
+        </div>
+    </body>
+</html>

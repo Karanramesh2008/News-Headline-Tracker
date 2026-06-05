@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>News Tracker</title>
+        <style>
+            body {
+                background-color: #1a1a2e;
+                color: white;
+                font-family: Arial, sans-serif;
+                padding: 30px;
+            }
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #16213e;
+                padding: 15px 30px;
+                margin: -30px -30px 30px -30px;
+            }
+            .navbar h1 {
+                margin: 0;
+                color: #e94560;
+                font-size: 36px;
+            }
+            .nav-links a{
+                text-decoration: none;
+                padding: 6px 14px;
+                background-color: #158135;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+            
+            .nav-links a:hover {
+                background-color: #e94560;
+            }
+
+            p {
+                color: #aaaaaa;
+            }
+
+            input {
+                padding: 10px;
+                width: 300px;
+                border-radius: 8px;
+                border: none;
+                font-size: 16px;
+            }
+
+            button {
+                padding: 10px 20px;
+                background-color: #e94560;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .headlines {
+                margin-top: 30px;
+            }
+
+            .card {
+                background-color: #16213e;
+                padding: 15px 20px;
+                margin: 10px 0;
+                border-radius: 8px;
+                border-left: 4px solid #e94560;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .save-btn {
+                padding: 6px 14px;
+                background-color: #158135;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="navbar">
+            <h1>📰 News Tracker</h1>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/saved" class="saved-btn">📌 Saved Headlines</a>
+            
+            </div>
+        </div>
+
+
+        <p>Latest headlines from BBC</p>
+
+        <form action="/search" method="get">
+            <input type="text" name="keyword" placeholder="Search headlines...">
+            <button type="submit">Search</button>
+        </form>
+        
+
+
+        <div class="headlines">
+            {% for headline in headlines %}
+                <div class="card">
+                    <span>{{ headline }}</span>
+                    <form action="/save" method="post">
+                        <input type="hidden" name="headline" value="{{headline}}">
+                        <button class="save-btn" type="submit">Save</button>
+                    </form>
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+    </body>
+</html>
